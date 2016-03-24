@@ -1,0 +1,121 @@
+profile-image-size = 10em
+
+.table-value
+  font-weight 100 !important
+
+.profile-header
+  .image-wrapper
+    overflow hidden
+    position relative
+
+    img
+      position absolute
+
+  .title-image
+    width 100%
+    height 20em
+
+    img
+      width 100%
+      min-height 20em
+      height auto
+
+  .profile-image
+    width profile-image-size
+    height profile-image-size
+    border-radius 100%
+    margin -1*(profile-image-size/2) auto 0 auto
+    border 0.2em solid white
+    z-index 15
+
+    img
+      width 10em
+      height auto
+
+  #title-sub-bar
+    position relative
+    width 100%
+    margin-top -1*(profile-image-size/2)+1em
+    display inline-flex
+    font-weight 900
+
+    .left-bar
+      width 50%
+      padding-right (profile-image-size/2)+2em
+      text-align right
+
+      .show-details
+        z-index 15
+
+    .right-bar
+      width 50%
+      padding-left (profile-image-size/2)+1em
+
+    .profile-details
+      background-color color_dark
+      position absolute
+      top -1em
+      left 0
+      width 100%
+      color white
+      max-height 0
+      z-index -1
+      transition all 0.2s ease-out;
+      overflow scroll
+      -webkit-overflow-scrolling touch
+      color white !important
+
+      &.visible
+        z-index 10
+        max-height 23em
+        transition all 0.3s ease-in;
+
+      .closing-caret
+        position absolute
+        z-index 12
+        top .5em
+        right .5em
+
+      .artist-information
+        >table
+          color white !important
+
+          >tbody >tr >td
+            padding-top 0.7em !important
+            padding-right 1em
+
+      >div
+        color white
+        padding-top (profile-image-size/2)+0.5em
+
+      .about-me
+        font-weight 100
+        overflow scroll
+        text-align justify
+
+  #profile-info
+    width 100%
+    text-align center
+    margin-top 1em
+
+    span
+      color black
+      font-size x-large
+      font-family 'Ubuntu'
+
+  #posts
+    display flex
+
+@media (max-width: 768px)
+  .profile-details
+    text-align center
+
+    .about-me
+      padding-top 1em !important
+
+    .artist-information
+      >table
+        margin auto
+
+  #posts
+    display inline !important

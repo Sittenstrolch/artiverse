@@ -1,0 +1,23 @@
+@require 'variables'
+
+@require "navbar"
+@require "profile"
+@require "post"
+@require "gallery"
+
+main
+  margin-top 50px
+  color black
+  font-family 'Ubuntu', sans
+  min-width 286px
+
+body
+  background color_light
+
+
+.clickable
+  cursor pointer
+  z-index 15
+
+  &:hover
+    color color_primary

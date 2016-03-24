@@ -1,0 +1,4 @@
+platform/node_modules/
+platform/src/**/*.js
+platform/src/**/*.map
+platform/src/**/*.css

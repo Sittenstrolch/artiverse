@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Artiverse</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- 1. Load libraries -->
+    <script src="angular2/bundles/angular2-polyfills.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en"></script>
+
+    <script src="systemjs/dist/system.src.js"></script>
+
+    <script src="rxjs/bundles/Rx.js"></script>
+    <script src="angular2/bundles/angular2.dev.js"></script>
+    <script src="angular2/bundles/http.dev.js"></script>
+    <script src="angular2/bundles/router.dev.js"></script>
+
+    <base href="/">
+    <!-- 2. Configure SystemJS -->
+    <script>
+      System.config({
+        packages: {
+          app: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('app/boot')
+            .then(null, console.error.bind(console));
+    </script>
+
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href="assets/styles/main.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/logo/favicon.png">
+  </head>
+  <!-- 3. Display the application -->
+  <body>
+    <artiverse>Loading...</artiverse>
+  </body>
+</html>

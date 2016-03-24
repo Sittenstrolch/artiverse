@@ -1,0 +1,107 @@
+post-width = 30em
+post-padding = 1em
+
+.post-profile-image-wrapper
+  height 2.5em
+  width 2.5em
+  border-radius 100%
+  position relative
+  overflow hidden
+  margin-right .5em
+  border 0.1em solid white
+
+  img
+    height 2.5em
+    width auto
+
+.post
+  display inline-block
+  padding post-padding
+  margin 1em
+  border-radius .4em
+  max-width post-width
+  min-width 10em
+  background white
+
+  .post-header
+    width 100%
+    display inline-flex
+    margin-bottom 1em
+
+    .post-date
+      font-size smaller
+
+  .post-content
+    .post-text
+      margin-bottom 1em
+
+    .post-images
+      max-width post-width - post-padding*2
+
+      .post-title-image
+        margin-bottom .1em
+        img
+          max-width 100%
+
+      .other-images
+        width 100%
+        display inline-flex
+        .post-image
+          max-width 25%
+          margin-right 0.1em
+          overflow hidden
+          img
+            height 7em
+
+    .post-image-wrapper
+      position relative
+
+      &:hover .hover-indicator
+        opacity .5
+        cursor pointer
+
+      .hover-indicator
+        position absolute
+        width 100%
+        height 100%
+        background color_primary
+        opacity 0
+        transition all 0.2s ease-in
+
+    .other-indicator
+      background color_light
+      width 25%
+      text-align center
+      line-height 7em
+      font-weight 800
+      flex 1
+      overflow hidden
+
+      span
+        white-space nowrap
+
+  .post-footer
+    margin-top 1em
+
+    .likes
+      font-size smaller
+
+    .like-button
+      color color_primary
+      font-size large
+
+      &:hover
+        cursor pointer
+
+@media (max-width: 768px)
+  .post
+    width 90%
+    margin-left auto !important
+    margin-right auto !important
+
+    .post-footer
+      .like-button
+        font-size x-large
+
+  post
+    display flex
