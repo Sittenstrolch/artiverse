@@ -31,51 +31,58 @@
       display table
       margin auto
       max-width 90%
+      height 100%
 
-      .vertical-aligner
-        text-align center
-        // margin-top 40%
-        // transform translateY(-50%)
+      .height-adjuster
+        height calc( 100% - 7em )
 
-        .image-navigation
-          max-height 60vh
-          max-width 100%
-          margin-top 50vh
-          transform translateY(-50%)
-          img
+        .vertical-aligner
+          text-align center
+          position relative
+          display inline-block
+          height 100%
+          // margin-top 40%
+          // transform translateY(-50%)
+
+          .image-navigation
             max-height 60vh
             max-width 100%
-            // position absolute
-            // transform translateX(-50%)
-            // bottom 15em
-          .gallery-nav
-            position absolute
-            top 0
-            height 100%
-            width 3em
-            color color_dark_opaque
-
-            i
+            margin-top 40vh
+            transform translateY(-50%)
+            img
+              max-height 60vh
+              max-width 100%
+              // position absolute
+              // transform translateX(-50%)
+              // bottom 15em
+            .gallery-nav
               position absolute
-              top 50%
+              top 0
+              height 100%
+              width 3em
+              color color_dark_opaque
 
-          .gallery-nav-left
-            left 0
-            i
+              i
+                position absolute
+                top 50%
+
+            .gallery-nav-left
               left 0
-          .gallery-nav-right
-            right 0
-            i
+              i
+                left 0
+            .gallery-nav-right
               right 0
+              i
+                right 0
 
-          .image-author
-            padding .5em
-            // background color_dark_opaque
-            position absolute
-            left 0
-            bottom 0
-            display inline-flex
-            color white
+            .image-author
+              padding .5em
+              // background color_dark_opaque
+              position absolute
+              left 0
+              bottom 0
+              display inline-flex
+              color white
 
     .gallery-footer
       width 100%

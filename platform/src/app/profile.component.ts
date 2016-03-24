@@ -5,12 +5,13 @@ import {Post} from './model/post'
 import {ProfileProvider} from './services/profile-provider.service';
 import {PostComponent} from './post.component';
 import {SanitizeHtml} from './pipes/sanitize-html.pipe';
+import {ProfileInteraction} from './services/profile-interaction.service';
 
 import {RouteParams, Router} from 'angular2/router';
 
 @Component({
   selector: 'profile',
-  providers: [ProfileProvider],
+  providers: [ProfileProvider, ProfileInteraction],
   directives: [PostComponent],
   template: `
     <div class="profile-header" *ngIf="artist">
@@ -46,8 +47,15 @@ import {RouteParams, Router} from 'angular2/router';
         </div>
       </div>
       <div id="profile-info" *ngIf="artist">
-        <div class="artistName">
+        <div class="artist-name">
           <span>{{artist.name}}</span>
+        </div>
+        <div class="follower">
+          <div class="follow-btn" (click)="toggleFollow()" [class.following]="following">
+            <span *ngIf="!following">Follow</span>
+            <span *ngIf="following">Following</span>
+          </div>
+          <span>{{artist.follower}} Follower</span>
         </div>
       </div>
       <div id="posts" *ngIf="posts">
@@ -59,13 +67,16 @@ import {RouteParams, Router} from 'angular2/router';
 })
 
 export class Profile implements OnInit{
+  public self:Artist = null
   public artist = null
+  public following = false
   public posts = []
   public detailsVisible:boolean = false
 
   constructor(
     private _router:Router,
     private _routeParams:RouteParams,
+    private _profileInteraction:ProfileInteraction,
     private _profileProvider:ProfileProvider){}
 
   ngOnInit() {
@@ -75,6 +86,14 @@ export class Profile implements OnInit{
     this._profileProvider.getProfile(id)
       .then( artist => {
         this.artist = artist
+
+        this._profileProvider.getOwnProfile()
+          .then( self => {
+            this.self = self
+            if(this.artist.id !== this.self.id && this.self.following.indexOf(this.artist.id) > -1){
+              this.following = true
+            }
+          })
       })
 
     this._profileProvider.getPosts(id)
@@ -97,6 +116,28 @@ export class Profile implements OnInit{
 
   sendMail(){
 
+  }
+
+  toggleFollow(){
+    if(!this.following){
+      this._profileInteraction.follow(this.artist.id)
+        .then( () => {
+          this.artist.follower += 1
+          this.following = true
+        })
+        .catch( err => {
+
+        })
+    }else{
+      this._profileInteraction.unfollow(this.artist.id)
+        .then( () => {
+          this.artist.follower -= 1
+          this.following = false
+        })
+        .catch( err => {
+
+        })
+    }
   }
 
 }

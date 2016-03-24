@@ -1,7 +1,7 @@
 import {Http, Headers} from 'angular2/http';
 import {Injectable} from 'angular2/core';
-import {Artist} from './artist'
-import {Post} from './post'
+import {Artist} from '../model/artist'
+import {Post} from '../model/post'
 import {Observable} from 'rxjs/Observable';
 
 

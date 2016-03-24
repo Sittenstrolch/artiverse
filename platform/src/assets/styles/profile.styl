@@ -26,7 +26,7 @@ profile-image-size = 10em
     border-radius 100%
     margin -1*(profile-image-size/2) auto 0 auto
     border 0.2em solid white
-    z-index 15
+    z-index 16
 
     img
       width 10em
@@ -96,12 +96,41 @@ profile-image-size = 10em
   #profile-info
     width 100%
     text-align center
-    margin-top 1em
+    margin-top 0.5em
+    margin-bottom 0.5em
 
-    span
-      color black
+    .artist-name
       font-size x-large
       font-family 'Ubuntu'
+
+  .follower
+    margin-top 0.5em
+
+  .follow-btn
+    margin-right 1em
+    border 0.1em solid white
+    display inline-block
+    color white
+    padding .5em
+    background color_primary
+    border-radius .2em
+
+    &:hover
+      color color_primary
+      border-color color_primary
+      background none
+      cursor pointer
+
+    &.following
+      color color_primary
+      border-color color_primary
+      background none
+
+    &:hover.following
+      color white
+      background color_primary
+      cursor pointer
+
 
   #posts
     display flex
@@ -116,6 +145,9 @@ profile-image-size = 10em
     .artist-information
       >table
         margin auto
+
+  // .follow-btn
+  //   font-size large
 
   #posts
     display inline !important
