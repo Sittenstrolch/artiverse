@@ -3,6 +3,7 @@ import {Component, OnInit} from 'angular2/core';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {GlobalMap} from './services/global.service';
+import {SelfProvider} from './services/self.service';
 
 import {NavigationBar} from './navigation-bar.component';
 import {Profile} from './profile.component';
@@ -11,7 +12,7 @@ import {Profile} from './profile.component';
 
 @Component({
     selector: 'artiverse',
-    providers: [HTTP_PROVIDERS, GlobalMap],
+    providers: [HTTP_PROVIDERS, GlobalMap, SelfProvider],
     directives: [Profile, NavigationBar, ROUTER_DIRECTIVES],
     template:`
         <navigation-bar></navigation-bar>

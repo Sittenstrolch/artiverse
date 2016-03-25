@@ -9,4 +9,5 @@ import {GlobalMap} from './services/global.service';
 bootstrap(AppComponent, [
   HTTP_PROVIDERS,
   ROUTER_PROVIDERS,
-  provide(LocationStrategy, {useClass: HashLocationStrategy} ]);
+  provide(LocationStrategy, {useClass: HashLocationStrategy}) ]
+  );

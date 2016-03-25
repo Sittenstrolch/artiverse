@@ -8,30 +8,7 @@ import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ProfileProvider {
-
   constructor(private _http:Http){}
-
-  getOwnProfile(){
-    return new Promise((resolve, reject) => {
-      let painter:Artist = {
-        id: 'olip',
-        name: 'Oliver Petrykowski',
-        titleImage: {normal:'https://static.pexels.com/photos/2324/skyline-buildings-new-york-skyscrapers.jpg', thumb: ''},
-        profileImage: {normal: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRW2PffJuhKgi0dEH3Kli0uO2knpx4e-aEQfGsTwhxnKx-XL82Eyw', thumb: ''},
-        city: 'Berlin',
-        country: 'GER',
-        email: "contact@oliver-petrykowski.de",
-        following: ['markuspetrykowski'],
-        follower: 134,
-        profession: 'Photographer',
-        aboutMe: `Lorem ipsum dolor sit amet, <b>consetetur</b> sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
-Duis autem vel eum iriure dolor in facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo`
-      }
-      resolve(painter)
-    });
-  }
-
 
   getProfile(profileId:string){
     // return this._http.get('/api/newTracks')

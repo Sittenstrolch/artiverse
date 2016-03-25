@@ -4,11 +4,14 @@ import {Artist} from '../model/artist'
 import {Post} from '../model/post'
 import {Observable} from 'rxjs/Observable';
 
+import {SelfProvider} from './self.service';
 
 @Injectable()
 export class ProfileInteraction {
 
-  constructor(private _http:Http){}
+  constructor(
+    private _http:Http,
+    private _selfProvider:SelfProvider){}
 
   follow(artistId:string){
     // return this._http.get('/api/newTracks')
@@ -18,7 +21,7 @@ export class ProfileInteraction {
       //   () => console.log('Authentication Complete')
       // );
     return new Promise((resolve, reject) => {
-
+    this._selfProvider.toggleFollow(artistId)
       resolve()
     });
   }
@@ -31,7 +34,7 @@ export class ProfileInteraction {
       //   () => console.log('Authentication Complete')
       // );
     return new Promise((resolve, reject) => {
-
+      this._selfProvider.toggleFollow(artistId)
       resolve()
     });
   }

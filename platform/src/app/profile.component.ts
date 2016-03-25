@@ -4,14 +4,16 @@ import {Artist} from './model/artist'
 import {Post} from './model/post'
 import {ProfileProvider} from './services/profile-provider.service';
 import {PostComponent} from './post.component';
+import {AddPost} from './add-post.component';
 import {SanitizeHtml} from './pipes/sanitize-html.pipe';
 import {ProfileInteraction} from './services/profile-interaction.service';
+import {SelfProvider} from './services/self.service';
 
 import {RouteParams, Router} from 'angular2/router';
 
 @Component({
   selector: 'profile',
-  providers: [ProfileProvider, ProfileInteraction],
+  providers: [ProfileProvider, ProfileInteraction, SelfProvider],
   directives: [PostComponent],
   template: `
     <div class="profile-header" *ngIf="artist">
@@ -77,7 +79,8 @@ export class Profile implements OnInit{
     private _router:Router,
     private _routeParams:RouteParams,
     private _profileInteraction:ProfileInteraction,
-    private _profileProvider:ProfileProvider){}
+    private _profileProvider:ProfileProvider,
+    private _selfProvider:SelfProvider){}
 
   ngOnInit() {
     console.log("Hello")
@@ -87,7 +90,7 @@ export class Profile implements OnInit{
       .then( artist => {
         this.artist = artist
 
-        this._profileProvider.getOwnProfile()
+        this._selfProvider.profile()
           .then( self => {
             this.self = self
             if(this.artist.id !== this.self.id && this.self.following.indexOf(this.artist.id) > -1){
@@ -119,25 +122,26 @@ export class Profile implements OnInit{
   }
 
   toggleFollow(){
-    if(!this.following){
-      this._profileInteraction.follow(this.artist.id)
-        .then( () => {
-          this.artist.follower += 1
-          this.following = true
-        })
-        .catch( err => {
-
-        })
-    }else{
+    if(this.following){
       this._profileInteraction.unfollow(this.artist.id)
         .then( () => {
           this.artist.follower -= 1
-          this.following = false
+          this.following = !this.following
         })
         .catch( err => {
-
+          console.log("reject", err)
+        })
+    }else{
+      this._profileInteraction.follow(this.artist.id)
+        .then( () => {
+          this.artist.follower += 1
+          this.following = !this.following
+        })
+        .catch( err => {
+          console.log("reject", err)
         })
     }
+
   }
 
 }
