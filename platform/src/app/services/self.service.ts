@@ -38,7 +38,6 @@ export class SelfProvider {
   }
 
   toggleFollow(artistId:string){
-    console.log("toggleFollo")
     if(this.self){
       let index = this.self.following.indexOf(artistId)
       if(index > -1)

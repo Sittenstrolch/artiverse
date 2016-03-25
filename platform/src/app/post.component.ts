@@ -1,5 +1,5 @@
 'use strict'
-import {Component, OnInit, Input} from 'angular2/core';
+import {Component, OnInit, Input, OnDestroy, Renderer} from 'angular2/core';
 import {Artist} from './model/artist'
 import {Post} from './model/post'
 import {Image} from './model/image'
@@ -52,19 +52,22 @@ import {PostInteraction} from './services/post-interaction.service';
         <span class="likes" *ngIf="post.likes === 0">Be the first to like it</span>
       </div>
     </div>
-    <gallery [images]="post.images" [startindex]="selectedImage" [artist]="artist" [(open)]="galleryOpen"></gallery>
+    <gallery [images]="post.images" [startindex]="selectedImage" [artist]="artist" [(open)]="galleryOpen" [releaser]="releaseListener"></gallery>
   `,
   pipes: [SanitizeHtml]
 })
 
-export class PostComponent implements OnInit{
+export class PostComponent implements OnInit, OnDestroy{
   @Input() post:Post
   @Input() artist:Artist
   public liked:boolean = false
   public selectedImage:number = 0
   public galleryOpen = false
+  public releaseListener = null
 
-  constructor(private _postInteraction:PostInteraction){}
+  constructor(
+    private _renderer:Renderer,
+    private _postInteraction:PostInteraction){}
 
   ngOnInit() {
   }
@@ -86,8 +89,21 @@ export class PostComponent implements OnInit{
   openGallery(index){
     document.body.style.overflow = "hidden"
 
+    this.releaseListener = this._renderer.listenGlobal('body', 'touchmove', (event) => {
+        console.log(event);
+        if (event.target.classList.contains('prevent-scrollable')) {
+          event.preventDefault();
+        }
+    });
+
     this.selectedImage = index
     this.galleryOpen = !this.galleryOpen
+  }
+
+  ngOnDestroy() {
+   // Removes the event listener
+   if(this.releaseListener)
+     this.releaseListener()
   }
 
 }
